@@ -1,8 +1,16 @@
-const express = require('express');
+const express = require("express");
+const envSetup = require("./config/envSetup");
+
 const app = express();
 
-const index = require('./routes/index.js');
+envSetup().then(() => {
+	const index = require("./routes/index.js");
 
-app.get('/', index);
+	app.get("/", index);
 
-app.listen(3000, () => console.log(`Open http://localhost:3000 to see a response.`));
+	app.listen(process.env.PORT, () =>
+		console.log(
+			`Open http://localhost:${process.env.PORT} to see a response.`
+		)
+	);
+});
