@@ -10,5 +10,17 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.4"
-  }
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dackq/express-code-challenge.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/dackq/express-code-challenge/issues"
+  },
+  "homepage": "https://github.com/dackq/express-code-challenge#readme"
 }
