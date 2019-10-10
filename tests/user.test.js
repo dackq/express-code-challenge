@@ -33,7 +33,7 @@ beforeEach(async () => {
 		let user = new User(data.users.preloadedUser);
 		await user.save();
 	} catch (err) {
-		console.log(err);
+		console.log(err.message);
 	}
 });
 
@@ -88,4 +88,12 @@ test("email must be unique", async () => {
 	await expect(user.save()).rejects.toThrow(
 		"E11000 duplicate key error collection"
 	);
+});
+test("password can be verified", async () => {
+	try {
+		const user = await User.findOne({ email: "susan@wikipodia.org" });
+		expect(await user.validPassword(data.users.password)).toBe(true);
+	} catch (err) {
+		console.log(err.message);
+	}
 });

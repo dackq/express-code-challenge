@@ -2,7 +2,7 @@
     "users": {
         "preloadedUser": {
             "name": "Susan",
-            "email": "Susan@wikipodia.org",
+            "email": "susan@wikipodia.org",
             "role": "student",
             "password": "omgiamsoboring" 
         },

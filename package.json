@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "jest --watch",
+    "dev": "nodemon index.js",
+    "test": "jest --watch --runInBand",
     "prestart": "node config/envSetup.js"
   },
   "author": "",
@@ -14,8 +15,9 @@
     "bcryptjs": "^2.4.3",
     "dotenv": "^8.1.0",
     "express": "^4.16.4",
-    "jest": "^24.9.0",
     "mongoose": "^5.7.3",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
     "validator": "^11.1.0"
   },
   "directories": {
@@ -32,5 +34,10 @@
   "homepage": "https://github.com/dackq/express-code-challenge#readme",
   "jest": {
     "testEnvironment": "node"
+  },
+  "devDependencies": {
+    "eslint": "^6.5.1",
+    "jest": "^24.9.0",
+    "supertest": "^4.0.2"
   }
 }
