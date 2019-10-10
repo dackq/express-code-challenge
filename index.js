@@ -1,6 +1,7 @@
 const express = require("express");
 require("dotenv").config();
 require("./models/db/mongoose");
+require("./playground/databaseTesting");
 
 const app = express();
 

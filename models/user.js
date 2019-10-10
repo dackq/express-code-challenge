@@ -1,4 +1,6 @@
 const mongoose = require("mongoose");
+const validator = require("validator");
+const Institution = require("./institution");
 
 const userSchema = new mongoose.Schema({
 	name: {
@@ -9,12 +11,35 @@ const userSchema = new mongoose.Schema({
 	email: {
 		type: String,
 		trim: true,
-		required: true
+		required: true,
+		unique: true,
+		lowercase: true,
+		async validate(value) {
+			if (!validator.isEmail(value)) {
+				throw new Error("Email is invalid");
+			}
+			if (
+				!(await Institution.findOne({
+					emailDomain: value.split("@")[1]
+				}))
+			) {
+				throw new Error("Unknown Institution");
+			}
+		}
 	},
 	role: {
 		type: String,
 		trim: true,
-		required: true
+		required: true,
+		validate(value) {
+			if (
+				value !== "student" &&
+				value !== "administrator" &&
+				value !== "academic"
+			) {
+				throw new Error("Unknown Role");
+			}
+		}
 	},
 	password: {
 		type: String,
