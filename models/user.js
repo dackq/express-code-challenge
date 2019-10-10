@@ -1,3 +1,4 @@
+const bcrypt = require("bcryptjs");
 const mongoose = require("mongoose");
 const validator = require("validator");
 const Institution = require("./institution");
@@ -45,6 +46,14 @@ const userSchema = new mongoose.Schema({
 		type: String,
 		trim: true,
 		required: true
+	}
+});
+
+userSchema.pre("save", async function(next) {
+	const user = this;
+
+	if (user.isModified("password")) {
+		user.password = await bcrypt.hash(user.password, 8);
 	}
 });
 

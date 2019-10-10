@@ -5,7 +5,7 @@ const Institution = require("../models/institution");
 const Book = require("../models/book");
 const data = require("./testData.json");
 
-beforeAll(async () => {
+beforeEach(async () => {
 	try {
 		await Institution.deleteMany();
 		await User.deleteMany();
@@ -29,21 +29,31 @@ beforeAll(async () => {
 			console.log(err.message);
 		}
 	}
+	try {
+		let user = new User(data.users.preloadedUser);
+		await user.save();
+	} catch (err) {
+		console.log(err);
+	}
 });
 
-test("Correct student user can be saved", async () => {
+test("password is hashed", async () => {
+	const user = await User.findOne({ email: "susan@wikipodia.org" });
+	expect(user.password).not.toBe(data.users.preloadedUser.password);
+});
+test("correct student user can be saved", async () => {
 	const user = new User(data.users.correctStudent);
 	await expect(user.save()).resolves.toBe(user);
 });
-test("Correct academic user can be saved", async () => {
+test("correct academic user can be saved", async () => {
 	const user = new User(data.users.correctAcademic);
 	await expect(user.save()).resolves.toBe(user);
 });
-test("Correct administrator user can be saved", async () => {
+test("correct administrator user can be saved", async () => {
 	const user = new User(data.users.correctAdministrator);
 	await expect(user.save()).resolves.toBe(user);
 });
-test("Incorrect email domain user cannot be saved", async () => {
+test("incorrect email domain user cannot be saved", async () => {
 	const user = new User(data.users.unknownEmailDomain);
 	await expect(user.save()).rejects.toThrow("Unknown Institution");
 });
@@ -74,7 +84,7 @@ test("user with no password cannot be saved", async () => {
 	await expect(user.save()).rejects.toThrow("Path `password` is required.");
 });
 test("email must be unique", async () => {
-	const user = new User(data.users.correctStudent);
+	const user = new User(data.users.preloadedUser);
 	await expect(user.save()).rejects.toThrow(
 		"E11000 duplicate key error collection"
 	);

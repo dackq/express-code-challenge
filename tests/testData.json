@@ -1,5 +1,11 @@
 {
     "users": {
+        "preloadedUser": {
+            "name": "Susan",
+            "email": "Susan@wikipodia.org",
+            "role": "student",
+            "password": "omgiamsoboring" 
+        },
         "noName": {
            "email": "dakdakdak@wikipodia.com",
            "role": "student",

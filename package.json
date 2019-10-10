@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "dotenv": "^8.1.0",
     "express": "^4.16.4",
     "jest": "^24.9.0",
@@ -29,7 +30,7 @@
     "url": "https://github.com/dackq/express-code-challenge/issues"
   },
   "homepage": "https://github.com/dackq/express-code-challenge#readme",
-  "jest" : {
+  "jest": {
     "testEnvironment": "node"
   }
 }
