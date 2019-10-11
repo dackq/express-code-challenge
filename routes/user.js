@@ -1,7 +1,7 @@
 const express = require("express");
 const passport = require("passport");
-const User = require("../models/user");
-require("../models/book");
+const User = require("../db/models/user");
+require("../db/models/book");
 
 const router = new express.Router();
 

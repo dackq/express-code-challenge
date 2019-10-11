@@ -1,6 +1,6 @@
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
-const User = require("../models/user");
+const User = require("../db/models/user");
 
 passport.use(
 	new LocalStrategy(
