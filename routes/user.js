@@ -1,25 +1,62 @@
 const express = require("express");
 const passport = require("passport");
+const User = require("../models/user");
+require("../models/book");
 
 const router = new express.Router();
 
-router.get("/", (req, res) => {
-	res.send("Hey hey hey");
+router.post("/users/signin", passport.authenticate("local"), (req, res) => {
+	res.status(200).send({
+		success: "success",
+		data: req.user
+	});
 });
 
-router.post(
-	"/users/signin",
-	passport.authenticate("local"),
-	async (req, res) => {
-		res.status(200).send({ success: "success", data: req.user });
+router.post("/users/create", async (req, res) => {
+	try {
+		const user = new User(req.body);
+		await user.save();
+		res.status(201).send({
+			success: "success",
+			data: user
+		});
+	} catch (err) {
+		res.status(400).send({
+			success: "fail",
+			data: {
+				message: error.message
+			}
+		});
 	}
-);
+});
 
-router.get("/user", (req, res) => {
-	if (req.isAuthenticated()) {
-		res.send(req.user);
-	} else {
-		res.send({ success: "fail", data: { message: "Please sign in" } });
+router.get("/books", async (req, res) => {
+	try {
+		if (req.isAuthenticated()) {
+			await req.user.populate("institution").execPopulate();
+			await req.user.institution.populate("books").execPopulate();
+
+			res.send({
+				success: "success",
+				data: {
+					books: req.user.institution.books
+				}
+			});
+		} else {
+			res.status(401).send({
+				success: "fail",
+				data: {
+					message: "Please sign in"
+				}
+			});
+		}
+	} catch (error) {
+		res.status(500).send({
+			success: "error",
+			data: {
+				error
+			}
+		});
 	}
 });
 

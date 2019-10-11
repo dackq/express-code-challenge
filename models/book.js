@@ -16,25 +16,12 @@ const bookSchema = new mongoose.Schema({
 		trim: true,
 		required: true
 	},
-	institutions: {
-		type: [{ type: mongoose.Schema.Types.ObjectId, ref: "Institution" }],
-		default: undefined
+	owner: {
+		type: mongoose.Schema.Types.ObjectId,
+		required: true,
+		ref: "Institution"
 	}
 });
-
-bookSchema.pre("save", async function() {
-	const book = this;
-});
-
-bookSchema.methods.updateInstitutions = async function(institution) {
-	const book = this;
-	book.institutions.push(institution);
-	try {
-		await book.save();
-	} catch (err) {
-		throw new Erorr(err);
-	}
-};
 
 const Book = mongoose.model("Book", bookSchema);
 

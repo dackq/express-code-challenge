@@ -5,12 +5,9 @@ const session = require("express-session");
 require("dotenv").config();
 require("./models/db/mongoose");
 require("./config/passportSetup");
-require("./playground/databaseTesting");
 const userRouter = require("./routes/user");
 
 const app = express();
-
-app.use(express.json());
 
 app.use(
 	session({
@@ -20,6 +17,7 @@ app.use(
 	})
 );
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 app.use(passport.initialize());
 app.use(passport.session());
 

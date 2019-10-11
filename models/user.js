@@ -63,7 +63,7 @@ userSchema.pre("save", async function(next) {
 	const relatedInstitution = await Institution.findOne({
 		emailDomain: user.email.split("@")[1]
 	});
-	user.institution = relatedInstitution;
+	user.institution = relatedInstitution._id;
 
 	next();
 });
