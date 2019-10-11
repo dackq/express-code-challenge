@@ -24,7 +24,7 @@ router.post("/users/create", async (req, res) => {
 		res.status(400).send({
 			success: "fail",
 			data: {
-				message: error.message
+				message: err.message
 			}
 		});
 	}

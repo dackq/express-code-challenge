@@ -79,22 +79,26 @@
         "geography": {
             "ISBN": "9788493028475",
             "title": "A Comprehensive Guide to the Geography of Neptune 5th Edition",
-            "author": "John 'Definitely Just Another Normal Human' Smith"
+            "author": "John 'Definitely Just Another Normal Human' Smith",
+            "owner": "University of Neptune"
         },
         "history": {
             "ISBN": "9788483174568",
             "title": "A History of Hipsters in Utah",
-            "author": "Pandora Bobo"
+            "author": "Pandora Bobo",
+            "owner": "Wikipodia"
         },
         "music": {
             "ISBN": "9785365986443",
             "title": "Musical Culture of Indigenous Neptunese Populations",
-            "author": "Dr. Chrshzzzz Ptrtrtrsd IV"
+            "author": "Dr. Chrshzzzz Ptrtrtrsd IV",
+            "owner": "University of Neptune"
         },
         "math": {
             "ISBN": "9789374456794",
             "title": "Mathmatical Foundations of Bread Baking",
-            "author": "Pilsbury Doughboy Ph.D"
+            "author": "Pilsbury Doughboy Ph.D",
+            "owner": "Wikipodia"
         }
     }
 }
