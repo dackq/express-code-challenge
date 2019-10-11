@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const User = require("./user");
 
 const institutionSchema = new mongoose.Schema({
 	name: {
@@ -15,8 +16,25 @@ const institutionSchema = new mongoose.Schema({
 		type: String,
 		trim: true,
 		required: true
+	},
+	books: {
+		type: [{ type: mongoose.Schema.Types.ObjectId, ref: "Book" }],
+		default: undefined
 	}
 });
+
+institutionSchema.pre("save", async function() {});
+
+institutionSchema.virtual("users", {
+	ref: "User",
+	localField: "_id",
+	foreignField: "institution"
+});
+
+// institutionSchema.methods.updateUsers = async function() {
+// 	const users = await User.find({ institution: this._id });
+// 	console.log(users);
+// };
 
 const Institution = mongoose.model("Institution", institutionSchema);
 

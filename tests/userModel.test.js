@@ -5,7 +5,7 @@ const Institution = require("../models/institution");
 const Book = require("../models/book");
 const data = require("./testData.json");
 
-beforeEach(async () => {
+beforeAll(async () => {
 	try {
 		await Institution.deleteMany();
 		await User.deleteMany();
@@ -90,10 +90,8 @@ test("email must be unique", async () => {
 	);
 });
 test("password can be verified", async () => {
-	try {
-		const user = await User.findOne({ email: "susan@wikipodia.org" });
-		expect(await user.validPassword(data.users.password)).toBe(true);
-	} catch (err) {
-		console.log(err.message);
-	}
+	const user = await User.findOne({ email: "susan@wikipodia.org" });
+	expect(await user.validPassword(data.users.preloadedUser.password)).toBe(
+		true
+	);
 });

@@ -46,6 +46,10 @@ const userSchema = new mongoose.Schema({
 		type: String,
 		trim: true,
 		required: true
+	},
+	institution: {
+		type: mongoose.Schema.Types.ObjectId,
+		ref: "Institution"
 	}
 });
 
@@ -55,6 +59,11 @@ userSchema.pre("save", async function(next) {
 	if (user.isModified("password")) {
 		user.password = await bcrypt.hash(user.password, 8);
 	}
+
+	const relatedInstitution = await Institution.findOne({
+		emailDomain: user.email.split("@")[1]
+	});
+	user.institution = relatedInstitution;
 
 	next();
 });
