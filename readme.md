@@ -17,5 +17,5 @@ Clone this repository and run **`npm install`** in the directory. The server can
 
 The server must have access to a **MongoDB** database, so, on the first, run a database url will be requested in the console. This information will be saved in a **.env** file so that it may be used on subsequent runs. 
 
-If you would like to initialize the database with test data, use **`npm run db-init`**.
+If you would like to initialize the database with test data, use **`npm run db-init`**. You can then create a user using the domain names **'@wikipodia.org'** or **'@uofn.org'**.
 
