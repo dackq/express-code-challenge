@@ -15,7 +15,7 @@ The database contains **`User`**, **`Institution`** and **`Book`** models which 
 
 Clone this repository and run **`npm install`** in the directory. The server can be started with **`npm start`**. 
 
-The server must have access to a **MongoDB** database, so on the first run a database url will be requested in the console. This information will be saved in a **.env** file so that it may be used on subsequent runs. 
+The server must have access to a **MongoDB** database, so, on the first, run a database url will be requested in the console. This information will be saved in a **.env** file so that it may be used on subsequent runs. 
 
 If you would like to initialize the database with test data, use **`npm run db-init`**.
 
