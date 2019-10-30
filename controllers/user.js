@@ -3,8 +3,7 @@ require("../db/models/book");
 
 /**
  * User Controller
- * @description Module containing functions which will be used by api routes to
- * modify, create, or access user database model information.
+ * @description Module containing functions which will be used by api routers to modify, create, or access user database model information.
  *
  * @module UserController
  */
