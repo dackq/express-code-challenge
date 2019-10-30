@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>
-      Home - Documentation
+      docs/scripts/fulltext-search-ui.js - Documentation
   </title>
 
   <link href="https://www.braintreepayments.com/images/favicon-ccda0b14.png" rel="icon" type="image/png">
@@ -49,14 +51,14 @@
 
   <div class="top-nav-wrapper">
     <ul>
-      <li  class="active" >
+      <li >
         <a href="index.html">
           
-          
-            <svg fill="#0095dd" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+            <svg fill="#6D6D6D" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
               <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
               <path d="M0 0h24v24H0z" fill="none"/>
             </svg>
+          
           
         </a>
       </li>
@@ -78,39 +80,108 @@
 
   <div id="main">
     
+      <h1 class="page-title">
+        docs/scripts/fulltext-search-ui.js
+      </h1>
+    
 
     
       
 
+<section>
+  <article>
+    <pre class="prettyprint source linenums"><code>window.SearcherDisplay = (function($) {
+    /**
+     * This class provides support for displaying quick search text results to users.
+     */
+    function SearcherDisplay() { }
 
+    SearcherDisplay.prototype.init = function() {
+        this._displayQuickSearch();
+    };
 
-    
+    /**
+     * This method creates the quick text search entry in navigation menu and wires all required events.
+     */
+    SearcherDisplay.prototype._displayQuickSearch = function() {
+            var quickSearch = $(document.createElement("iframe")),
+                   body = $("body"),
+                   self = this;
 
-      
+            quickSearch.attr("src", "quicksearch.html");
+            quickSearch.css("width", "0px");
+            quickSearch.css("height", "0px");
 
+            body.append(quickSearch);
 
-  <section class="readme">
-    <article>
-      <h1>Old Bibliu Express Server Tech Test</h1>
-<p>This code is my response to Bibliu's <a href="https://github.com/bibliotom/express-code-challenge">old tech test</a>. It is an express server with a mongodb database and <a href="https://mongoosejs.com/">mongoose</a> object modeling.</p>
-<h2>Outline</h2>
-<p>The database contains <strong><code>User</code></strong>, <strong><code>Institution</code></strong> and <strong><code>Book</code></strong> models which can be accessed by three routes defined by express:</p>
-<ol>
-<li><strong><code>POST /users/signin</code></strong>: verifies user credentials with the <a href="https://www.npmjs.com/package/passport">passport</a> library which then registers a session with <a href="https://www.npmjs.com/package/express-session">express-session</a>.</li>
-<li><strong><code>POST /users/create</code></strong>: creates user with a <strong>name</strong>, <strong>email</strong>, <strong>role</strong> and <strong>password</strong>.
-<ul>
-<li>At the time of saving, the user model will also use the registered email domain to associate users with their respective institution.</li>
-</ul>
-</li>
-<li><strong><code>GET /books</code></strong>: returns a list of books offered by each user's respective institution to the client.</li>
-</ol>
-<h2>How to Use</h2>
-<p>Clone this repository and run <strong><code>npm install</code></strong> in the directory. The server can be started with <strong><code>npm start</code></strong>.</p>
-<p>The server must have access to a <strong>MongoDB</strong> database, so, on the first, run a database url will be requested in the console. This information will be saved in a <strong>.env</strong> file so that it may be used on subsequent runs.</p>
-<p>If you would like to initialize the database with test data, use <strong><code>npm run db-init</code></strong>. You can then create a user using the domain names <strong>'@wikipodia.org'</strong> or <strong>'@uofn.org'</strong>.</p>
-    </article>
-  </section>
+            $(window).on("message", function(msg) {
+                var msgData = msg.originalEvent.data;
 
+                if (msgData.msgid != "docstrap.quicksearch.done") {
+                    return;
+                }
+
+                var results = msgData.results || [];
+
+                self._displaySearchResults(results);
+            });
+
+            function startSearch() {
+              var searchTerms = $('#search-input').prop("value");
+              if (searchTerms) {
+                quickSearch[0].contentWindow.postMessage({
+                  "searchTerms": searchTerms,
+                  "msgid": "docstrap.quicksearch.start"
+                }, "*");
+              }
+            }
+
+            $('#search-input').on('keyup', function(evt) {
+              if (evt.keyCode != 13) {
+                return;
+              }
+              startSearch();
+              return false;
+            });
+            $('#search-submit').on('click', function() {
+              startSearch();
+              return false;
+            });
+    };
+
+    /**
+     * This method displays the quick text search results in a modal dialog.
+     */
+    SearcherDisplay.prototype._displaySearchResults = function(results) {
+            var resultsHolder = $($("#searchResults").find(".modal-body")),
+                  fragment = document.createDocumentFragment(),
+                  resultsList = document.createElement("ul");
+
+            resultsHolder.empty();
+
+            for (var idx = 0; idx &lt; results.length; idx++) {
+                var result = results[idx],
+                       item = document.createElement("li"),
+                       link = document.createElement("a");
+
+                link.href = result.id;
+                link.innerHTML = result.title;
+
+                item.appendChild(link)
+                resultsList.appendChild(item);
+            }
+
+            fragment.appendChild(resultsList);
+            resultsHolder.append(fragment);
+
+            $("#searchResults").modal({"show": true});
+    };
+
+    return new SearcherDisplay();
+})($);
+</code></pre>
+  </article>
+</section>
 
     
 

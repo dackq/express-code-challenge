@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const validator = require("validator");
 const Institution = require("./institution");
 
+//declare user schema
 const userSchema = new mongoose.Schema({
 	name: {
 		type: String,
@@ -53,6 +54,7 @@ const userSchema = new mongoose.Schema({
 	}
 });
 
+// Hash password before saving and determine related institution
 userSchema.pre("save", async function(next) {
 	const user = this;
 
@@ -68,11 +70,29 @@ userSchema.pre("save", async function(next) {
 	next();
 });
 
-userSchema.methods.validPassword = async function(password) {
+/**
+ *	@memberof User
+ * 	@alias User.validPassword
+ *	@static
+ *	@description Determines if a given password matches the hashed password in the
+ database. Used by passport to determine authorization.
+ *  @param {string} password Password string to be compared with hashed value in database.
+ * 	@return {boolean}
+ */
+userSchema.statics.validPassword = async function(password) {
 	const isMatch = await bcrypt.compare(password, this.password);
 	return isMatch;
 };
 
+/**
+ * Mongoose Users Model
+ * @class User
+ * @property {string} Name
+ * @property {string} Email Validated as a valid email. Email domain name is validated against institutions which can be found in the database. If there is not a match, user is not accepted.
+ * @property {string} Role Validated against list of posible roles ('student', 'administrator', 'academic')
+ * @property {string} Password String value is replaced with a bcrypt hashed value before being saved to the database.
+ * @property {mongoose.ObjectId} Institution Link to the user's related institution. Determined implicitly based on the domain name.
+ */
 const User = mongoose.model("User", userSchema);
 
 module.exports = User;

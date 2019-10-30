@@ -59,7 +59,7 @@ test("email must be unique", async () => {
 });
 test("password can be verified", async () => {
 	const user = await User.findOne({ email: "susan@wikipodia.org" });
-	expect(await user.validPassword(data.users.preloadedUser.password)).toBe(
+	expect(await User.validPassword(data.users.preloadedUser.password)).toBe(
 		true
 	);
 });

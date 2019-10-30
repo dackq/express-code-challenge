@@ -7,7 +7,7 @@
 	"recurseDepth": 10,
 	"opts": {
 		"destination": "./docs/",
-		"template": "node_modules/minami",
+		"template": "node_modules/braintree-jsdoc-template",
 		"recurse": true
 	}
 }

@@ -13,7 +13,7 @@ passport.use(
 						message: "Invalid email or password"
 					});
 				}
-				if (!(await user.validPassword(password))) {
+				if (!(await User.validPassword(password))) {
 					return done(null, false, {
 						message: "invalid email or password"
 					});

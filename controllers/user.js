@@ -21,7 +21,6 @@ require("../db/models/book");
  * @param {string} req.body.role User's role
  * @param {string} req.body.password User's password. Will be hashed on saving to the database.
  * @param {object} res Http response object that will be used to send the response.
- * @return {object} res.data
  */
 exports.createUser = async (req, res) => {
 	try {
@@ -49,7 +48,6 @@ exports.createUser = async (req, res) => {
  * @param {string} req.user User data. Will be added to the req object by passport
  * after authentication.
  * @param {object} res Http response object that will be used to send the response.
- * @return {object} response object with success message and data property. Data will either contain the list of books or an error message depending on sucess.
  */
 exports.getUserBooks = async (req, res) => {
 	try {
