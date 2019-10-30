@@ -36,4 +36,9 @@ for (let router of routers) {
 	app.use(router);
 }
 
+// catch 404 and forward to error handler
+app.use((req, res, next) => {
+	return handleError(res, 404, "Page Not Found");
+});
+
 module.exports = app;
