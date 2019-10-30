@@ -73,6 +73,7 @@ userSchema.pre("save", async function(next) {
 /**
  *	@memberof User
  * 	@alias User.validPassword
+ *  @inner
  *	@description Determines if a given password matches the hashed password in the
  database. Used by passport to determine authorization.
  *  @param {string} password Password string to be compared with hashed value in database.
@@ -86,7 +87,6 @@ userSchema.methods.validPassword = async function(password) {
 /**
  * Mongoose Users Model
  * @class User
- * @inner
  * @property {string} Name
  * @property {string} Email Validated as a valid email. Email domain name is validated against institutions which can be found in the database. If there is not a match, user is not accepted.
  * @property {string} Role Validated against list of posible roles ('student', 'administrator', 'academic')
