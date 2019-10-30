@@ -1,8 +1,8 @@
 require("dotenv").config();
-require("../models/db/mongoose");
-const User = require("../models/user");
-const Institution = require("../models/institution");
-const Book = require("../models/book");
+require("../db/mongoose");
+const User = require("../db/models/user");
+const Institution = require("../db/models/institution");
+const Book = require("../db/models/book");
 const data = require("./fixtures/testData.json");
 
 test("password is hashed", async () => {

@@ -1,20 +1,21 @@
+// package dependencies
 const glob = require("glob");
 const path = require("path");
 const express = require("express");
 const passport = require("passport");
 const bodyParser = require("body-parser");
 const session = require("express-session");
+
 require("dotenv").config();
 require("./db/mongoose");
 require("./config/passportSetup");
+const app = express();
 
 let routers = [];
 glob.sync("./routes/*.js").forEach(file => {
 	const router = require(path.resolve(file));
 	routers.push(router);
 });
-
-const app = express();
 
 app.use(
 	session({
