@@ -31,7 +31,7 @@ app.use(bodyParser.json());
 app.use(passport.initialize());
 app.use(passport.session());
 
-/* Application Routes*/
+/* Application Routes */
 for (let router of routers) {
 	app.use(router);
 }

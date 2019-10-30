@@ -1,6 +1,12 @@
 const fs = require("fs");
 const crypto = require("crypto");
 
+/*
+ * Attemps to access .env file in the top level directory
+ * If there is no file found, a prompt is printed out to the commandline asking
+ * for a mongodb server url.
+ * A .env file is generated with the url, and a randomly generated secret key for express session.
+ */
 fs.access("./.env", err => {
 	if (err) {
 		const rl = require("readline").createInterface({
