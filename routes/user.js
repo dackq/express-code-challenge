@@ -1,63 +1,25 @@
 const express = require("express");
 const passport = require("passport");
-const User = require("../db/models/user");
-require("../db/models/book");
+const UserController = require("../controllers/user");
 
 const router = new express.Router();
 
+// ROUTES
+
+//User Routes
+/**
+ *  Passport is used to authenticate user and will throw unauthorized if they are not
+ *  authenticated. If they are authorized then this route will send a success message
+ *  with the user's data
+ */
 router.post("/users/signin", passport.authenticate("local"), (req, res) => {
 	res.status(200).send({
 		success: "success",
 		data: req.user
 	});
 });
+router.post("/users/create", UserController.createUser);
 
-router.post("/users/create", async (req, res) => {
-	try {
-		const user = new User(req.body);
-		await user.save();
-		res.status(201).send({
-			success: "success",
-			data: user
-		});
-	} catch (err) {
-		res.status(400).send({
-			success: "fail",
-			data: {
-				message: err.message
-			}
-		});
-	}
-});
-
-router.get("/books", async (req, res) => {
-	try {
-		if (req.isAuthenticated()) {
-			await req.user.populate("institution").execPopulate();
-			await req.user.institution.populate("books").execPopulate();
-
-			res.send({
-				success: "success",
-				data: {
-					books: req.user.institution.books
-				}
-			});
-		} else {
-			res.status(401).send({
-				success: "fail",
-				data: {
-					message: "Please sign in"
-				}
-			});
-		}
-	} catch (error) {
-		res.status(500).send({
-			success: "error",
-			data: {
-				error
-			}
-		});
-	}
-});
+router.get("/books", UserController.getUserBooks);
 
 module.exports = router;

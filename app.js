@@ -11,12 +11,14 @@ require("./db/mongoose");
 require("./config/passportSetup");
 const app = express();
 
+//loading routers
 let routers = [];
 glob.sync("./routes/*.js").forEach(file => {
 	const router = require(path.resolve(file));
 	routers.push(router);
 });
 
+//middleware stack
 app.use(
 	session({
 		secret: process.env.SESSION_SECRET,
@@ -29,6 +31,7 @@ app.use(bodyParser.json());
 app.use(passport.initialize());
 app.use(passport.session());
 
+/* Application Routes*/
 for (let router of routers) {
 	app.use(router);
 }
