@@ -19,3 +19,7 @@ The server must have access to a **MongoDB** database, so, on the first, run a d
 
 If you would like to initialize the database with test data, use **`npm run db-init`**. You can then create a user using the domain names **'@wikipodia.org'** or **'@uofn.org'**.
 
+## Documentation
+
+Documentation for the classes and modules used in the server can be acessed in the docs folder. These files will be servered up at localhost:3000/docs once the server is started.
+
