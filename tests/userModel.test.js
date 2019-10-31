@@ -1,9 +1,15 @@
 require("dotenv").config();
 require("../db/mongoose");
+const controller = require("./fixtures/dbController");
 const User = require("../db/models/user");
 const Institution = require("../db/models/institution");
 const Book = require("../db/models/book");
 const data = require("./fixtures/testData.json");
+
+beforeAll(async () => {
+	await controller.dbInit(data);
+	await controller.createNewUser(data.users.preloadedUser);
+});
 
 test("password is hashed", async () => {
 	const user = await User.findOne({ email: "susan@wikipodia.org" });
@@ -59,7 +65,7 @@ test("email must be unique", async () => {
 });
 test("password can be verified", async () => {
 	const user = await User.findOne({ email: "susan@wikipodia.org" });
-	expect(await User.validPassword(data.users.preloadedUser.password)).toBe(
+	expect(await user.validPassword(data.users.preloadedUser.password)).toBe(
 		true
 	);
 });

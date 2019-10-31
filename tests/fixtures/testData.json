@@ -1,104 +1,104 @@
 {
-    "users": {
-        "preloadedUser": {
-            "name": "Susan",
-            "email": "susan@wikipodia.org",
-            "role": "student",
-            "password": "omgiamsoboring" 
-        },
-        "noName": {
-           "email": "dakdakdak@wikipodia.com",
-           "role": "student",
-           "password": "abcd1234"
-        },
-        "noEmail": {
-            "name": "Dakota",
-            "role": "student",
-            "password": "abcd1234"
-        },
-        "noRole": {
-            "name": "Dakota",
-            "email": "dakdakdak@wikipodia.com", 
-            "password": "abcd1234" 
-        },
-        "noPasword": {
-            "name": "Dakota",
-            "email": "dakdakdak@wikipodia.com",
-            "role": "student"
-        },
-        "unknownEmailDomain": {
-            "name": "Dakota",
-            "email": "dakdakdak@gmayo.com",
-            "role": "student",
-            "password": "abcd1234"
-        }, 
-        "correctStudent": {
-            "name": "Job",
-            "email": "helloiamjob@wikipodia.org",
-            "role": "student",
-             "password": "abcd1234"
-        },
-        "correctAcademic": {
-            "name": "Manuel",
-            "email": "mantheman@uofn.org",
-            "role": "academic",
-             "password": "maniamwell"
-        },
-        "correctAdministrator": {
-            "name": "Dora",
-            "email": "drbbug@uofn.org",
-            "role": "administrator",
-             "password": "graburbackp@ck!"
-        },
-        "unknownRole": {
-            "name": "Oscar The Grouch",
-            "email": "oscarthegrouch@wikipodia.org",
-            "role": "homeless",
-            "password": "trashcanscountashomes"
-        },
-        "unknownRoleAndEmailDomain": {
-            "name": "Dexter",
-            "email": "iwillconquertheworld@notanevilscientist.io",
-            "role": "Mad Scientist",
-            "password": "worldconquerer1996"
-        }
-    },
-    "institutions": {
-        "wikipodia": {
-            "name": "Wikipodia",
-            "url": "www.wikipodia.org",
-            "emailDomain": "wikipodia.org"
-        },
-        "neptune": {
-            "name": "University of Neptune",
-            "url": "www.uofn.org",
-            "emailDomain": "uofn.org"
-        }
-    },
-    "books": {
-        "geography": {
-            "ISBN": "9788493028475",
-            "title": "A Comprehensive Guide to the Geography of Neptune 5th Edition",
-            "author": "John 'Definitely Just Another Normal Human' Smith",
-            "owner": "University of Neptune"
-        },
-        "history": {
-            "ISBN": "9788483174568",
-            "title": "A History of Hipsters in Utah",
-            "author": "Pandora Bobo",
-            "owner": "Wikipodia"
-        },
-        "music": {
-            "ISBN": "9785365986443",
-            "title": "Musical Culture of Indigenous Neptunese Populations",
-            "author": "Dr. Chrshzzzz Ptrtrtrsd IV",
-            "owner": "University of Neptune"
-        },
-        "math": {
-            "ISBN": "9789374456794",
-            "title": "Mathmatical Foundations of Bread Baking",
-            "author": "Pilsbury Doughboy Ph.D",
-            "owner": "Wikipodia"
-        }
-    }
+	"users": {
+		"preloadedUser": {
+			"name": "Susan",
+			"email": "susan@wikipodia.org",
+			"role": "student",
+			"password": "omgiamsoboring"
+		},
+		"noName": {
+			"email": "dakdakdak@wikipodia.com",
+			"role": "student",
+			"password": "abcd1234"
+		},
+		"noEmail": {
+			"name": "Dakota",
+			"role": "student",
+			"password": "abcd1234"
+		},
+		"noRole": {
+			"name": "Dakota",
+			"email": "dakdakdak@wikipodia.com",
+			"password": "abcd1234"
+		},
+		"noPasword": {
+			"name": "Dakota",
+			"email": "dakdakdak@wikipodia.com",
+			"role": "student"
+		},
+		"unknownEmailDomain": {
+			"name": "Dakota",
+			"email": "dakdakdak@gmayo.com",
+			"role": "student",
+			"password": "abcd1234"
+		},
+		"correctStudent": {
+			"name": "Job",
+			"email": "helloiamjob@wikipodia.org",
+			"role": "student",
+			"password": "abcd1234"
+		},
+		"correctAcademic": {
+			"name": "Manuel",
+			"email": "mantheman@uofn.org",
+			"role": "academic",
+			"password": "maniamwell"
+		},
+		"correctAdministrator": {
+			"name": "Dora",
+			"email": "drbbug@uofn.org",
+			"role": "administrator",
+			"password": "graburbackp@ck!"
+		},
+		"unknownRole": {
+			"name": "Oscar The Grouch",
+			"email": "oscarthegrouch@wikipodia.org",
+			"role": "homeless",
+			"password": "trashcanscountashomes"
+		},
+		"unknownRoleAndEmailDomain": {
+			"name": "Dexter",
+			"email": "iwillconquertheworld@notanevilscientist.io",
+			"role": "Mad Scientist",
+			"password": "worldconquerer1996"
+		}
+	},
+	"institutions": {
+		"wikipodia": {
+			"name": "Wikipodia",
+			"url": "www.wikipodia.org",
+			"emailDomain": "wikipodia.org"
+		},
+		"neptune": {
+			"name": "University of Neptune",
+			"url": "www.uofn.org",
+			"emailDomain": "uofn.org"
+		}
+	},
+	"books": {
+		"geography": {
+			"ISBN": "9788493028475",
+			"title": "A Comprehensive Guide to the Geography of Neptune 5th Edition",
+			"author": "John 'Definitely Just Another Normal Human' Smith",
+			"owner": "University of Neptune"
+		},
+		"history": {
+			"ISBN": "9788483174568",
+			"title": "A History of Hipsters in Utah",
+			"author": "Pandora Bobo",
+			"owner": "Wikipodia"
+		},
+		"music": {
+			"ISBN": "9785365986443",
+			"title": "Musical Culture of Indigenous Neptunese Populations",
+			"author": "Dr. Chrshzzzz Ptrtrtrsd IV",
+			"owner": "University of Neptune"
+		},
+		"math": {
+			"ISBN": "9789374456794",
+			"title": "Mathmatical Foundations of Bread Baking",
+			"author": "Pilsbury Doughboy Ph.D",
+			"owner": "Wikipodia"
+		}
+	}
 }
