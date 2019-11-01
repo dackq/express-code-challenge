@@ -75,7 +75,7 @@
 
     
 
-    <h3>Classes</h3><ul><li id="Book-nav"><a href="Book.html">Book</a></li><li id="Institution-nav"><a href="Institution.html">Institution</a></li><li id="User-nav"><a href="User.html">User</a><ul class='methods'><li data-type="method" id="User-validPassword-nav"><a href="User.html#.validPassword">validPassword</a></li></ul></li></ul><h3>Modules</h3><ul><li id="UserController-nav"><a href="module-UserController.html">UserController</a><ul class='methods'><li data-type="method" id="UserController-createUser-nav"><a href="module-UserController.html#.createUser">createUser</a></li><li data-type="method" id="UserController-getUserBooks-nav"><a href="module-UserController.html#.getUserBooks">getUserBooks</a></li><li data-type="method" id="UserController-signInUser-nav"><a href="module-UserController.html#.signInUser">signInUser</a></li></ul></li></ul>
+    <h3>Classes</h3><ul><li id="Book-nav"><a href="Book.html">Book</a></li><li id="Institution-nav"><a href="Institution.html">Institution</a></li><li id="User-nav"><a href="User.html">User</a><ul class='methods'><li data-type="method" id="User-validPassword-nav"><a href="User.html#.validPassword">validPassword</a></li></ul></li></ul><h3>Modules</h3><ul><li id="UserController-nav"><a href="module-UserController.html">UserController</a><ul class='methods'><li data-type="method" id="UserController-createUser-nav"><a href="module-UserController.html#.createUser">createUser</a></li><li data-type="method" id="UserController-getUserBooks-nav"><a href="module-UserController.html#.getUserBooks">getUserBooks</a></li><li data-type="method" id="UserController-signInUser-nav"><a href="module-UserController.html#.signInUser">signInUser</a></li><li data-type="method" id="UserController-signOutUser-nav"><a href="module-UserController.html#.signOutUser">signOutUser</a></li></ul></li></ul>
   </nav>
 
   <div id="main">
@@ -104,7 +104,7 @@ require("../db/models/book");
  * Create User.
  * @description This creates a user. User details are sent on the req.body object
  * and returned on the res.data object. If the request is invalid the res.success
- * value will be 'fail'.
+ * value will be 'fail'. Used with the POST /users/create route.
  * @param {object} req Http request for the route. Must include body property with
  * new user credentials.
  * @param {string} req.body.name User's name
@@ -135,7 +135,7 @@ exports.createUser = async (req, res) => {
 /**
  * Get user books.
  * @description This returns a list of books that the user can access based on their
- * institution.
+ * institution. Used with the GET /books route.
  * @param {object} req Http request for the route.
  * @param {string} req.user User data. Will be added to the req object by passport
  * after authentication.
@@ -174,7 +174,7 @@ exports.getUserBooks = async (req, res) => {
 
 /**
  * Sign In User
- * @description This signs in a user. User credentials are authenticated by passport. If they are invalid, passport returns unauthorized. If they are valid this route returns an http reponse with a success message and the user data.
+ * @description This signs in a user. User credentials are authenticated by passport. If they are invalid, passport returns unauthorized. If they are valid this route returns an http reponse with a success message and the user data. Used with the POST /users/signin route.
  * @param {object} req Http request for the route.
  * @param {string} req.email email of user
  * @param {string} req.password password of the user
@@ -185,6 +185,32 @@ exports.signInUser = async (req, res) => {
 		res.status(200).send({
 			success: "success",
 			data: req.user
+		});
+	} catch (err) {
+		res.status(500).send({
+			success: "error",
+			data: {
+				message: err.message,
+				error: err
+			}
+		});
+	}
+};
+
+/**
+ * Sign In User
+ * @description User is signed out using the logout function created by passport on the req object. Used with the POST /users/signout route.
+ * @param {object} req Http request for the route.
+ * @param {object} res Http response object that will be used to send the response.
+ */
+exports.signOutUser = async (req, res) => {
+	try {
+		req.logout();
+		res.status(200).send({
+			success: "success",
+			data: {
+				message: "User signed out"
+			}
 		});
 	} catch (err) {
 		res.status(500).send({

@@ -73,7 +73,7 @@
 
     
 
-    <h3>Classes</h3><ul><li id="Book-nav"><a href="Book.html">Book</a></li><li id="Institution-nav"><a href="Institution.html">Institution</a></li><li id="User-nav"><a href="User.html">User</a><ul class='methods'><li data-type="method" id="User-validPassword-nav"><a href="User.html#.validPassword">validPassword</a></li></ul></li></ul><h3>Modules</h3><ul><li id="UserController-nav"><a href="module-UserController.html">UserController</a><ul class='methods'><li data-type="method" id="UserController-createUser-nav"><a href="module-UserController.html#.createUser">createUser</a></li><li data-type="method" id="UserController-getUserBooks-nav"><a href="module-UserController.html#.getUserBooks">getUserBooks</a></li><li data-type="method" id="UserController-signInUser-nav"><a href="module-UserController.html#.signInUser">signInUser</a></li></ul></li></ul>
+    <h3>Classes</h3><ul><li id="Book-nav"><a href="Book.html">Book</a></li><li id="Institution-nav"><a href="Institution.html">Institution</a></li><li id="User-nav"><a href="User.html">User</a><ul class='methods'><li data-type="method" id="User-validPassword-nav"><a href="User.html#.validPassword">validPassword</a></li></ul></li></ul><h3>Modules</h3><ul><li id="UserController-nav"><a href="module-UserController.html">UserController</a><ul class='methods'><li data-type="method" id="UserController-createUser-nav"><a href="module-UserController.html#.createUser">createUser</a></li><li data-type="method" id="UserController-getUserBooks-nav"><a href="module-UserController.html#.getUserBooks">getUserBooks</a></li><li data-type="method" id="UserController-signInUser-nav"><a href="module-UserController.html#.signInUser">signInUser</a></li><li data-type="method" id="UserController-signOutUser-nav"><a href="module-UserController.html#.signOutUser">signOutUser</a></li></ul></li></ul>
   </nav>
 
   <div id="main">
@@ -216,7 +216,7 @@
   <div class="description">
     This creates a user. User details are sent on the req.body object
 and returned on the res.data object. If the request is invalid the res.success
-value will be 'fail'.
+value will be 'fail'. Used with the POST /users/create route.
   </div>
 
 
@@ -535,7 +535,7 @@ new user credentials.
 
   <div class="description">
     This returns a list of books that the user can access based on their
-institution.
+institution. Used with the GET /books route.
   </div>
 
 
@@ -766,7 +766,7 @@ after authentication.
 
 
   <div class="description">
-    This signs in a user. User credentials are authenticated by passport. If they are invalid, passport returns unauthorized. If they are valid this route returns an http reponse with a success message and the user data.
+    This signs in a user. User credentials are authenticated by passport. If they are invalid, passport returns unauthorized. If they are valid this route returns an http reponse with a success message and the user data. Used with the POST /users/signin route.
   </div>
 
 
@@ -978,6 +978,181 @@ after authentication.
       <ul class="dummy">
         <li>
           <a href="controllers_user.js.html">controllers/user.js</a>, <a href="controllers_user.js.html#line91">line 91</a>
+        </li>
+      </ul>
+    </dd>
+  
+
+  
+
+  
+
+  
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+        
+
+
+  
+
+  <span class='name-container'>
+    <a class="link-icon" href="#.signOutUser">
+      <svg height="20" width="20" style="fill: black;">
+        <use xlink:href="#linkIcon"></use>
+      </svg>
+    </a>
+    <h4 class="name" id=".signOutUser">
+      <span class="type-signature">(static) </span>signOutUser<span class="signature">(req, res)</span><span class="type-signature"></span>
+    </h4>
+  </span>
+
+  
+
+
+
+  <div class="description">
+    User is signed out using the logout function created by passport on the req object. Used with the POST /users/signout route.
+  </div>
+
+
+
+
+
+
+
+  <h5>Parameters:</h5>
+  
+
+<table class="params">
+  <thead>
+    <tr>
+      
+        <th>Name</th>
+      
+
+      <th>Type</th>
+
+      
+
+      
+
+      <th class="last">Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    
+      <tr>
+        
+          <td class="name"><code>req</code></td>
+        
+
+        <td class="type">
+          
+            
+    <span class="param-type">
+      object
+    </span>
+
+    
+
+
+          
+        </td>
+
+        
+
+        
+
+        <td class="description last">
+          Http request for the route.
+          
+        </td>
+      </tr>
+
+    
+      <tr>
+        
+          <td class="name"><code>res</code></td>
+        
+
+        <td class="type">
+          
+            
+    <span class="param-type">
+      object
+    </span>
+
+    
+
+
+          
+        </td>
+
+        
+
+        
+
+        <td class="description last">
+          Http response object that will be used to send the response.
+          
+        </td>
+      </tr>
+
+    
+  </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source">
+      <ul class="dummy">
+        <li>
+          <a href="controllers_user.js.html">controllers/user.js</a>, <a href="controllers_user.js.html#line114">line 114</a>
         </li>
       </ul>
     </dd>

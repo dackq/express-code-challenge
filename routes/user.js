@@ -14,25 +14,7 @@ router.post(
 );
 
 // POST /users/signout
-router.post("/users/signout", (req, res) => {
-	try {
-		req.logout();
-		res.status(200).send({
-			success: "success",
-			data: {
-				message: "User signed out"
-			}
-		});
-	} catch (err) {
-		res.status(500).send({
-			success: "error",
-			data: {
-				message: err.message,
-				error: err
-			}
-		});
-	}
-});
+router.post("/users/signout", UserController.signOutUser);
 
 // POST /users/create
 router.post("/users/create", UserController.createUser);
