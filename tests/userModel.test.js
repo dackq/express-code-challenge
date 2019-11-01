@@ -2,8 +2,6 @@ require("dotenv").config();
 require("../db/mongoose");
 const controller = require("./fixtures/dbController");
 const User = require("../db/models/user");
-const Institution = require("../db/models/institution");
-const Book = require("../db/models/book");
 const data = require("./fixtures/testData.json");
 
 beforeAll(async () => {
