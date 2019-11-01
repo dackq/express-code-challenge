@@ -21,5 +21,7 @@ If you would like to initialize the database with test data, use **`npm run db-i
 
 ## Documentation
 
-Documentation for the classes and modules used in the server can be acessed in the docs folder. These files will be servered up at localhost:3000/docs once the server is started.
+Documentation for the classes and modules used in the server can be acessed via github pages [at this link](https://dackq.github.io/express-code-challenge/).
+
+If you would like, they can also be accessed at [localhost:3000/docs](localhost:3000/docs) once the server has been started.
 
