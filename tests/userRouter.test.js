@@ -48,6 +48,8 @@ describe("Preloaded User Test", () => {
 				password: data.users.preloadedUser.password
 			})
 			.expect(200);
+
+		// test res.body
 		expect(res.body.success).toBe("success");
 		expect(res.body.data.name).toBe(data.users.preloadedUser.name);
 		expect(res.body.data.email).toBe(data.users.preloadedUser.email);
@@ -88,9 +90,23 @@ describe("Preloaded User Test", () => {
 			)
 		).toBe(true);
 	});
+
+	it("signs out user", async () => {
+		const res = await agent.post("/users/signout").expect(200);
+
+		expect(res.body.success).toBe("success");
+		expect(res.body.data.message).toBe("User signed out");
+	});
+
+	it("can no longer access user books", async () => {
+		const res = await agent.get("/books").expect(401);
+
+		expect(res.body.success).toBe("fail");
+		expect(res.body.data.message).toBe("Please sign in");
+	});
 });
 
-describe("Fail Tests", () => {
+describe("Failed Sign Ups", () => {
 	it("does not sign up user with unknown email domain", async () => {
 		const res = await agent
 			.post("/users/create")
@@ -98,9 +114,9 @@ describe("Fail Tests", () => {
 			.expect(400);
 
 		expect(res.body.success).toBe("fail");
-		expect(res.body.data.message).toBe(
-			"User validation failed: email: Unknown Institution"
-		);
+		expect(res.body.data.error.email).toBeTruthy();
+		expect(res.body.data.error.email.name).toBe("ValidatorError");
+		expect(res.body.data.error.email.message).toBe("Unknown Institution");
 	});
 	it("does not sign up user with missing name", async () => {
 		const res = await agent
@@ -109,8 +125,10 @@ describe("Fail Tests", () => {
 			.expect(400);
 
 		expect(res.body.success).toBe("fail");
-		expect(res.body.data.message).toBe(
-			"User validation failed: name: Path `name` is required."
+		expect(res.body.data.error.name).toBeTruthy();
+		expect(res.body.data.error.name.name).toBe("ValidatorError");
+		expect(res.body.data.error.name.message).toBe(
+			"Path `name` is required."
 		);
 	});
 	it("does not sign up user with missing email", async () => {
@@ -120,8 +138,90 @@ describe("Fail Tests", () => {
 			.expect(400);
 
 		expect(res.body.success).toBe("fail");
-		expect(res.body.data.message).toBe(
-			"User validation failed: email: Path `email` is required."
+		expect(res.body.data.error.email).toBeTruthy();
+		expect(res.body.data.error.email.name).toBe("ValidatorError");
+		expect(res.body.data.error.email.message).toBe(
+			"Path `email` is required."
 		);
+	});
+	it("does not sign up user with missing role", async () => {
+		const res = await agent
+			.post("/users/create")
+			.send(data.users.noRole)
+			.expect(400);
+
+		expect(res.body.success).toBe("fail");
+		expect(res.body.data.error.role).toBeTruthy();
+		expect(res.body.data.error.role.name).toBe("ValidatorError");
+		expect(res.body.data.error.role.message).toBe(
+			"Path `role` is required."
+		);
+	});
+	it("does not sign up user with missing password", async () => {
+		const res = await agent
+			.post("/users/create")
+			.send(data.users.noPassword)
+			.expect(400);
+
+		expect(res.body.success).toBe("fail");
+		expect(res.body.data.error.password).toBeTruthy();
+		expect(res.body.data.error.password.name).toBe("ValidatorError");
+		expect(res.body.data.error.password.message).toBe(
+			"Path `password` is required."
+		);
+	});
+	it("does not sign up user with unknown role", async () => {
+		const res = await agent
+			.post("/users/create")
+			.send(data.users.unknownRole)
+			.expect(400);
+
+		expect(res.body.success).toBe("fail");
+		expect(res.body.data.error.role).toBeTruthy();
+		expect(res.body.data.error.role.name).toBe("ValidatorError");
+		expect(res.body.data.error.role.message).toBe("Unknown Role");
+	});
+	it("does not sign up user with unknown role and email domain", async () => {
+		const res = await agent
+			.post("/users/create")
+			.send(data.users.unknownRoleAndEmailDomain)
+			.expect(400);
+
+		expect(res.body.success).toBe("fail");
+		expect(res.body.data.error.role).toBeTruthy();
+		expect(res.body.data.error.role.name).toBe("ValidatorError");
+		expect(res.body.data.error.role.message).toBe("Unknown Role");
+		expect(res.body.data.error.email).toBeTruthy();
+		expect(res.body.data.error.email.name).toBe("ValidatorError");
+		expect(res.body.data.error.email.message).toBe("Unknown Institution");
+	});
+});
+
+describe("Failed Sign Ins", () => {
+	it("does not sign in user with unkown credentials", async () => {
+		const res = await agent
+			.post("/users/signin")
+			.send({
+				email: data.users.noName.email,
+				password: data.users.noName.password
+			})
+			.expect(401);
+
+		expect(res.res.statusMessage).toBe("Unauthorized");
+
+		agent.get("/books").expect(401);
+	});
+	it("does not sign in user with incorrect password", async () => {
+		const res = await agent
+			.post("/users/signin")
+			.send({
+				email: data.users.preloadedUser.email,
+				password: "defNotTheRightPassword"
+			})
+			.expect(401);
+
+		expect(res.res.statusMessage).toBe("Unauthorized");
+
+		agent.get("/books").expect(401);
 	});
 });

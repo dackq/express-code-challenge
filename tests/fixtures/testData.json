@@ -18,12 +18,12 @@
 		},
 		"noRole": {
 			"name": "Dakota",
-			"email": "dakdakdak@wikipodia.com",
+			"email": "dakdakdak@wikipodia.org",
 			"password": "abcd1234"
 		},
-		"noPasword": {
+		"noPassword": {
 			"name": "Dakota",
-			"email": "dakdakdak@wikipodia.com",
+			"email": "dakdakdak@wikipodia.org",
 			"role": "student"
 		},
 		"unknownEmailDomain": {

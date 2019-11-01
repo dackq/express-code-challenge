@@ -29,11 +29,12 @@ exports.createUser = async (req, res) => {
 			success: "success",
 			data: user
 		});
-	} catch (err) {
+	} catch (error) {
 		res.status(400).send({
 			success: "fail",
 			data: {
-				message: err.message
+				message: error.message,
+				error: error.errors
 			}
 		});
 	}
@@ -72,7 +73,8 @@ exports.getUserBooks = async (req, res) => {
 		res.status(500).send({
 			success: "error",
 			data: {
-				error
+				message: error.message,
+				error: error.errors
 			}
 		});
 	}
