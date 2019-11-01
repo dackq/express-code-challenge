@@ -75,7 +75,7 @@
 
     
 
-    <h3>Classes</h3><ul><li id="Book-nav"><a href="Book.html">Book</a></li><li id="Institution-nav"><a href="Institution.html">Institution</a></li><li id="User-nav"><a href="User.html">User</a><ul class='methods'><li data-type="method" id="User-validPassword-nav"><a href="User.html#.validPassword">validPassword</a></li></ul></li></ul><h3>Modules</h3><ul><li id="UserController-nav"><a href="module-UserController.html">UserController</a><ul class='methods'><li data-type="method" id="UserController-createUser-nav"><a href="module-UserController.html#.createUser">createUser</a></li><li data-type="method" id="UserController-getUserBooks-nav"><a href="module-UserController.html#.getUserBooks">getUserBooks</a></li></ul></li></ul>
+    <h3>Classes</h3><ul><li id="Book-nav"><a href="Book.html">Book</a></li><li id="Institution-nav"><a href="Institution.html">Institution</a></li><li id="User-nav"><a href="User.html">User</a><ul class='methods'><li data-type="method" id="User-validPassword-nav"><a href="User.html#.validPassword">validPassword</a></li></ul></li></ul><h3>Modules</h3><ul><li id="UserController-nav"><a href="module-UserController.html">UserController</a><ul class='methods'><li data-type="method" id="UserController-createUser-nav"><a href="module-UserController.html#.createUser">createUser</a></li><li data-type="method" id="UserController-getUserBooks-nav"><a href="module-UserController.html#.getUserBooks">getUserBooks</a></li><li data-type="method" id="UserController-signInUser-nav"><a href="module-UserController.html#.signInUser">signInUser</a></li></ul></li></ul>
   </nav>
 
   <div id="main">
@@ -121,11 +121,12 @@ exports.createUser = async (req, res) => {
 			success: "success",
 			data: user
 		});
-	} catch (err) {
+	} catch (error) {
 		res.status(400).send({
 			success: "fail",
 			data: {
-				message: err.message
+				message: error.message,
+				error: error.errors
 			}
 		});
 	}
@@ -164,7 +165,33 @@ exports.getUserBooks = async (req, res) => {
 		res.status(500).send({
 			success: "error",
 			data: {
-				error
+				message: error.message,
+				error: error.errors
+			}
+		});
+	}
+};
+
+/**
+ * Sign In User
+ * @description This signs in a user. User credentials are authenticated by passport. If they are invalid, passport returns unauthorized. If they are valid this route returns an http reponse with a success message and the user data.
+ * @param {object} req Http request for the route.
+ * @param {string} req.email email of user
+ * @param {string} req.password password of the user
+ * @param {object} res Http response object that will be used to send the response.
+ */
+exports.signInUser = async (req, res) => {
+	try {
+		res.status(200).send({
+			success: "success",
+			data: req.user
+		});
+	} catch (err) {
+		res.status(500).send({
+			success: "error",
+			data: {
+				message: err.message,
+				error: err
 			}
 		});
 	}

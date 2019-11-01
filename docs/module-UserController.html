@@ -73,7 +73,7 @@
 
     
 
-    <h3>Classes</h3><ul><li id="Book-nav"><a href="Book.html">Book</a></li><li id="Institution-nav"><a href="Institution.html">Institution</a></li><li id="User-nav"><a href="User.html">User</a><ul class='methods'><li data-type="method" id="User-validPassword-nav"><a href="User.html#.validPassword">validPassword</a></li></ul></li></ul><h3>Modules</h3><ul><li id="UserController-nav"><a href="module-UserController.html">UserController</a><ul class='methods'><li data-type="method" id="UserController-createUser-nav"><a href="module-UserController.html#.createUser">createUser</a></li><li data-type="method" id="UserController-getUserBooks-nav"><a href="module-UserController.html#.getUserBooks">getUserBooks</a></li></ul></li></ul>
+    <h3>Classes</h3><ul><li id="Book-nav"><a href="Book.html">Book</a></li><li id="Institution-nav"><a href="Institution.html">Institution</a></li><li id="User-nav"><a href="User.html">User</a><ul class='methods'><li data-type="method" id="User-validPassword-nav"><a href="User.html#.validPassword">validPassword</a></li></ul></li></ul><h3>Modules</h3><ul><li id="UserController-nav"><a href="module-UserController.html">UserController</a><ul class='methods'><li data-type="method" id="UserController-createUser-nav"><a href="module-UserController.html#.createUser">createUser</a></li><li data-type="method" id="UserController-getUserBooks-nav"><a href="module-UserController.html#.getUserBooks">getUserBooks</a></li><li data-type="method" id="UserController-signInUser-nav"><a href="module-UserController.html#.signInUser">signInUser</a></li></ul></li></ul>
   </nav>
 
   <div id="main">
@@ -718,7 +718,266 @@ after authentication.
     <dd class="tag-source">
       <ul class="dummy">
         <li>
-          <a href="controllers_user.js.html">controllers/user.js</a>, <a href="controllers_user.js.html#line51">line 51</a>
+          <a href="controllers_user.js.html">controllers/user.js</a>, <a href="controllers_user.js.html#line52">line 52</a>
+        </li>
+      </ul>
+    </dd>
+  
+
+  
+
+  
+
+  
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+        
+
+
+  
+
+  <span class='name-container'>
+    <a class="link-icon" href="#.signInUser">
+      <svg height="20" width="20" style="fill: black;">
+        <use xlink:href="#linkIcon"></use>
+      </svg>
+    </a>
+    <h4 class="name" id=".signInUser">
+      <span class="type-signature">(static) </span>signInUser<span class="signature">(req, res)</span><span class="type-signature"></span>
+    </h4>
+  </span>
+
+  
+
+
+
+  <div class="description">
+    This signs in a user. User credentials are authenticated by passport. If they are invalid, passport returns unauthorized. If they are valid this route returns an http reponse with a success message and the user data.
+  </div>
+
+
+
+
+
+
+
+  <h5>Parameters:</h5>
+  
+
+<table class="params">
+  <thead>
+    <tr>
+      
+        <th>Name</th>
+      
+
+      <th>Type</th>
+
+      
+
+      
+
+      <th class="last">Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    
+      <tr>
+        
+          <td class="name"><code>req</code></td>
+        
+
+        <td class="type">
+          
+            
+    <span class="param-type">
+      object
+    </span>
+
+    
+
+
+          
+        </td>
+
+        
+
+        
+
+        <td class="description last">
+          Http request for the route.
+          
+            <h6>Properties</h6>
+            
+
+<table class="params">
+  <thead>
+    <tr>
+      
+        <th>Name</th>
+      
+
+      <th>Type</th>
+
+      
+
+      
+
+      <th class="last">Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    
+      <tr>
+        
+          <td class="name"><code>email</code></td>
+        
+
+        <td class="type">
+          
+            
+    <span class="param-type">
+      string
+    </span>
+
+    
+
+
+          
+        </td>
+
+        
+
+        
+
+        <td class="description last">
+          email of user
+          
+        </td>
+      </tr>
+
+    
+      <tr>
+        
+          <td class="name"><code>password</code></td>
+        
+
+        <td class="type">
+          
+            
+    <span class="param-type">
+      string
+    </span>
+
+    
+
+
+          
+        </td>
+
+        
+
+        
+
+        <td class="description last">
+          password of the user
+          
+        </td>
+      </tr>
+
+    
+  </tbody>
+</table>
+
+          
+        </td>
+      </tr>
+
+    
+      <tr>
+        
+          <td class="name"><code>res</code></td>
+        
+
+        <td class="type">
+          
+            
+    <span class="param-type">
+      object
+    </span>
+
+    
+
+
+          
+        </td>
+
+        
+
+        
+
+        <td class="description last">
+          Http response object that will be used to send the response.
+          
+        </td>
+      </tr>
+
+    
+  </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source">
+      <ul class="dummy">
+        <li>
+          <a href="controllers_user.js.html">controllers/user.js</a>, <a href="controllers_user.js.html#line91">line 91</a>
         </li>
       </ul>
     </dd>
