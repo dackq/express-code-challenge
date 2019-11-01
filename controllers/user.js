@@ -79,3 +79,28 @@ exports.getUserBooks = async (req, res) => {
 		});
 	}
 };
+
+/**
+ * Sign In User
+ * @description This signs in a user. User credentials are authenticated by passport. If they are invalid, passport returns unauthorized. If they are valid this route returns an http reponse with a success message and the user data.
+ * @param {object} req Http request for the route.
+ * @param {string} req.email email of user
+ * @param {string} req.password password of the user
+ * @param {object} res Http response object that will be used to send the response.
+ */
+exports.signInUser = async (req, res) => {
+	try {
+		res.status(200).send({
+			success: "success",
+			data: req.user
+		});
+	} catch (err) {
+		res.status(500).send({
+			success: "error",
+			data: {
+				message: err.message,
+				error: err
+			}
+		});
+	}
+};
