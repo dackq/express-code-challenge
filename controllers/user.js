@@ -106,7 +106,7 @@ exports.signInUser = async (req, res) => {
 };
 
 /**
- * Sign In User
+ * Sign Out User
  * @description User is signed out using the logout function created by passport on the req object. Used with the POST /users/signout route.
  * @param {object} req Http request for the route.
  * @param {object} res Http response object that will be used to send the response.
