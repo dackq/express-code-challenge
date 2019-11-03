@@ -1,4 +1,3 @@
-require("dotenv").config();
 require("../db/mongoose");
 const request = require("supertest");
 const bcrypt = require("bcryptjs");

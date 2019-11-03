@@ -1,4 +1,3 @@
-require("dotenv").config();
 require("../db/mongoose");
 const controller = require("./fixtures/dbController");
 const User = require("../db/models/user");
