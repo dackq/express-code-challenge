@@ -7,7 +7,8 @@
 		"start": "node config/envSetup.js && node index.js",
 		"dev": "nodemon index.js",
 		"test": "jest --watch --runInBand",
-		"db-init": "node tests/fixtures/dbInit.js"
+		"db-init": "node tests/fixtures/dbInit.js",
+		"init-and-dev": "run-p db-init dev"
 	},
 	"author": "",
 	"license": "ISC",
@@ -47,6 +48,7 @@
 		"jsdoc": "^3.6.3",
 		"minami": "^1.2.3",
 		"nodemon": "^1.19.3",
+		"npm-run-all": "^4.1.5",
 		"supertest": "^4.0.2"
 	}
 }
