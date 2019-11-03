@@ -13,11 +13,35 @@ The database contains **`User`**, **`Institution`** and **`Book`** models which 
 
 ## How to Use
 
-Clone this repository and run **`npm install`** in the directory. The server can be started with **`npm start`**. 
+### Set-Up
 
-The server must have access to a **MongoDB** database, so, on the first, run a database url will be requested in the console. This information will be saved in a **.env** file so that it may be used on subsequent runs. 
+This program uses Docker to facilitate set up. However, you must have docker installed in order to use it.
 
-If you would like to initialize the database with test data, use **`npm run db-init`**. You can then create a user using the domain names **'@wikipodia.org'** or **'@uofn.org'**.
+The easiest way to do this is to install Docker Desktop. You can find installation instructions and downloads for Docker Desktop [at this link](https://hub.docker.com/).
+
+Once you have Docker Desktop installed, running the server is easy. Simply navigate to the directory you would like to save this repository to and run the following command:
+
+`git clone https://github.com/dackq/express-code-challenge.git`
+
+Then navigate into the new directory:
+
+`cd express-code-challenge/`
+
+Afterwards you can use Docker to set up the database and run the server. This process is saved in the npm start script so simply run.
+
+`npm start`
+
+This will create two docker containers and get them up and running. One is the server and the other is the database. The database will be pre-seeded with institution and book documents.
+
+### Running tests
+
+Because docker containers have their own filesystem, in order to run the tests on the server you will need to connect a new bash terminal to the server container.
+
+To do this run the following script:
+
+`npm run connect`
+
+This will start a bash terminal session within the server container. From here you can run `npm test` to see the test results.
 
 ## Documentation
 

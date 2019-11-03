@@ -4,9 +4,11 @@
 	"description": "A coding challenge to assess your ability to navigate an express server implementation.",
 	"main": "index.js",
 	"scripts": {
-		"start": "node config/envSetup.js && node index.js",
+		"start": "docker-compose up",
 		"dev": "nodemon index.js",
-		"test": "jest --watch --runInBand",
+		"connect": "docker exec -it test-express-server bash",
+		"docs": "jsdoc -r -c ./config/jsdoc.json -R readme.md",
+		"test": "jest --watchAll",
 		"db-init": "node tests/fixtures/dbInit.js",
 		"init-and-dev": "run-p db-init dev"
 	},
@@ -16,7 +18,6 @@
 		"bcryptjs": "^2.4.3",
 		"body-parser": "^1.19.0",
 		"crypto": "^1.0.1",
-		"dotenv": "^8.1.0",
 		"express": "^4.16.4",
 		"express-session": "^1.16.2",
 		"glob": "^7.1.4",

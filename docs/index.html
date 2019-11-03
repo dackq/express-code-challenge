@@ -105,9 +105,21 @@
 <li><strong><code>GET /books</code></strong>: returns a list of books offered by each user's respective institution to the client.</li>
 </ol>
 <h2>How to Use</h2>
-<p>Clone this repository and run <strong><code>npm install</code></strong> in the directory. The server can be started with <strong><code>npm start</code></strong>.</p>
-<p>The server must have access to a <strong>MongoDB</strong> database, so, on the first, run a database url will be requested in the console. This information will be saved in a <strong>.env</strong> file so that it may be used on subsequent runs.</p>
-<p>If you would like to initialize the database with test data, use <strong><code>npm run db-init</code></strong>. You can then create a user using the domain names <strong>'@wikipodia.org'</strong> or <strong>'@uofn.org'</strong>.</p>
+<h3>Set-Up</h3>
+<p>This program uses Docker to facilitate set up. However, you must have docker installed in order to use it.</p>
+<p>The easiest way to do this is to install Docker Desktop. You can find installation instructions and downloads for Docker Desktop <a href="https://hub.docker.com/">at this link</a>.</p>
+<p>Once you have Docker Desktop installed, running the server is easy. Simply navigate to the directory you would like to save this repository to and run the following command:</p>
+<p><code>git clone https://github.com/dackq/express-code-challenge.git</code></p>
+<p>Then navigate into the new directory:</p>
+<p><code>cd express-code-challenge/</code></p>
+<p>Afterwards you can use Docker to set up the database and run the server. This process is saved in the npm start script so simply run.</p>
+<p><code>npm start</code></p>
+<p>This will create two docker containers and get them up and running. One is the server and the other is the database. The database will be pre-seeded with institution and book documents.</p>
+<h3>Running tests</h3>
+<p>Because docker containers have their own filesystem, in order to run the tests on the server you will need to connect a new bash terminal to the server container.</p>
+<p>To do this run the following script:</p>
+<p><code>npm run connect</code></p>
+<p>This will start a bash terminal session within the server container. From here you can run <code>npm test</code> to see the test results.</p>
 <h2>Documentation</h2>
 <p>Documentation for the classes and modules used in the server can be acessed via github pages <a href="https://dackq.github.io/express-code-challenge/">at this link</a>.</p>
 <p>If you would like, they can also be accessed at <a href="localhost:3000/docs">localhost:3000/docs</a> once the server has been started.</p>
