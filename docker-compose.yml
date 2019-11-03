@@ -11,7 +11,7 @@ services:
       - ./external/mongo:/data
 
   backend: 
-    container_name: test-expressserver
+    container_name: test-express-server
     restart: always
     build: 
       dockerfile: Dockerfile
