@@ -1,4 +1,3 @@
-require("dotenv").config();
 require("../../db/mongoose");
 const { dbInit, createNewUser } = require("./dbController");
 const data = require("./testData.json");

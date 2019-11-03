@@ -6,7 +6,6 @@ const passport = require("passport");
 const bodyParser = require("body-parser");
 const session = require("express-session");
 
-require("dotenv").config();
 require("./db/mongoose");
 require("./config/passportSetup");
 const app = express();
