@@ -39,7 +39,7 @@ To stop the server, press `ctrl-c`. Anytime that you would like to run the serve
 
 Because docker containers have their own filesystem, in order to run the tests on the server you will need to connect a new bash terminal to the server container.
 
-To do this run the following script:
+To do this run the following script *while the server is already running*:
 
 `npm run connect`
 
