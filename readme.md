@@ -33,6 +33,8 @@ Afterwards you can use Docker to set up the database and run the server. This pr
 
 This will create two docker containers and get them up and running. One is the server and the other is the database. The database will be pre-seeded with institution and book documents.
 
+To stop the server, press `ctrl-c`. Anytime that you would like to run the server again, simply re-use the command `npm start` in the project directory.
+
 ### Running tests
 
 Because docker containers have their own filesystem, in order to run the tests on the server you will need to connect a new bash terminal to the server container.
