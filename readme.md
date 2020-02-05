@@ -27,23 +27,23 @@ Then navigate into the new directory:
 
 `cd express-code-challenge/`
 
-Afterwards you can use Docker to set up the database and run the server. This process is saved in the npm start script so simply run.
+Afterwards, you need to use Docker to set up the database and run the server. This process is saved in the npm start script, so simply run:
 
 `npm start`
 
 This will create two docker containers and get them up and running. One is the server and the other is the database. The database will be pre-seeded with institution and book documents.
 
-To stop the server, press `ctrl-c`. Anytime that you would like to run the server again, simply re-use the command `npm start` in the project directory.
+To stop the server, type `ctrl-c` into the terminal where it is running. Anytime that you would like to run the server again, simply re-use the command `npm start` in the project directory.
 
 ### Running tests
 
-Because docker containers have their own filesystem, in order to run the tests on the server you will need to connect a new bash terminal to the server container.
+Because docker containers have their own filesystem, in order to run the tests on the server you will need to connect a new bash terminal to the container running the server.
 
 To do this run the following script *while the server is already running*:
 
 `npm run connect`
 
-This will start a bash terminal session within the server container. From here you can run `npm test` to see the test results.
+This will start a bash terminal session within the container. From here, you can run `npm test` to see the test results.
 
 ## Documentation
 
